@@ -10,14 +10,16 @@ import math
 import cadquery as cq
 
 # ---------------- PARÁMETROS (cámbialos aquí) ----------------
-ARM_X = 13.0      # espesor del brazo en dirección del eje (medido: 1.3 cm)
-ARM_Y = 13.0      # ancho del brazo en dirección de lanzamiento  (CONFIRMAR)
+ARM_X = 13.0      # espesor de la tabla del brazo = canto negro, dirección del eje (medido: 1.3 cm)
+ARM_Y_TIP = 10.0  # ancho de la cara café en la punta (medido: 1 cm), punta redondeada R = ARM_Y_TIP/2
+ARM_Y = 13.0      # ancho de la cara café a ARM_Y_AT de la punta (medido: 1.3 cm)
+ARM_Y_AT = 40.0   # distancia desde la punta donde se midió ARM_Y
 CLR = 0.5         # holgura total: deja ~0.25 mm por lado para la capa de pegamento
 WALL = 3.0        # pared del manguito
-SLEEVE_L = 50.0   # largo que entra el brazo en el manguito (más área de pegado, abraza la rajadura)
+SLEEVE_L = 40.0   # cuánto entra el brazo en el soporte (4 cm)
 CAP = 3.0         # espesor de la tapa del manguito
 VENT_D = 3.0      # respiraderos para que salga el exceso de pegamento
-VENT_Z = (-15.0, -35.0)  # posición de los respiraderos (bajo la punta del brazo)
+VENT_Z = (-13.0, -29.0)  # posición de los respiraderos (bajo la punta del brazo)
 
 PIV_D = 5.3       # perno del pivote (M5)
 PIN_D = 3.2       # pasador de bloqueo (M3 o varilla de 3 mm)
@@ -37,7 +39,7 @@ CUP_DIST = 62.0   # distancia pivote -> centro del cuenco (a lo largo del tallo)
 # --------------------------------------------------------------
 
 OX = ARM_X + CLR + 2 * WALL           # ancho exterior del manguito en X
-OY = ARM_Y + CLR + 2 * WALL           # ancho exterior del manguito en Y
+OY = ARM_Y_TIP + (ARM_Y - ARM_Y_TIP) * (SLEEVE_L - ARM_Y_TIP / 2) / (ARM_Y_AT - ARM_Y_TIP / 2) + CLR + 2 * WALL  # ancho exterior en Y
 PZ = CAP + 2.0 + HUB_R                # altura del pivote sobre la punta del brazo
 RI = BALL_D / 2 + 2.0                 # radio interior del cuenco
 RO = RI + CUP_WALL
@@ -58,8 +60,7 @@ def soporte():
     # Manguito
     body = cq.Workplane("XY").box(OX, OY, SLEEVE_L + CAP, centered=(True, True, False)) \
         .translate((0, 0, -SLEEVE_L))
-    pocket = cq.Workplane("XY").box(ARM_X + CLR, ARM_Y + CLR, SLEEVE_L, centered=(True, True, False)) \
-        .translate((0, 0, -SLEEVE_L))
+    pocket = arm_profile(SLEEVE_L, CLR).extrude(ARM_X + CLR).translate((-(ARM_X + CLR) / 2, 0, 0))
     body = body.cut(pocket)
     # Orejas (sector)
     a = math.radians(CHEEK_HALF)
@@ -121,8 +122,23 @@ def cuchara():
     return body
 
 
+def arm_width(d):
+    """Ancho del brazo (cara café) a una distancia d de la punta: lineal entre la punta y la medida a ARM_Y_AT."""
+    r = ARM_Y_TIP / 2
+    return ARM_Y_TIP + (ARM_Y - ARM_Y_TIP) * max(d - r, 0) / (ARM_Y_AT - r)
+
+
+def arm_profile(length, clr=0.0):
+    """Perfil del brazo en el plano YZ (cónico, punta redondeada), con holgura total clr. Punta en Z = 0."""
+    r = ARM_Y_TIP / 2
+    rr = r + clr / 2
+    wb = arm_width(length) + clr
+    return (cq.Workplane("YZ").moveTo(-wb / 2, -length).lineTo(wb / 2, -length)
+            .lineTo(rr, -r).threePointArc((0, -r + rr), (-rr, -r)).close())
+
+
 def brazo_ref(length=120):
-    return cq.Workplane("XY").box(ARM_X, ARM_Y, length, centered=(True, True, False)).translate((0, 0, -length))
+    return arm_profile(length).extrude(ARM_X).translate((-ARM_X / 2, 0, 0))
 
 
 def cuchara_en(theta):

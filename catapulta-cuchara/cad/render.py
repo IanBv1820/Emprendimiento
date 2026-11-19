@@ -63,9 +63,37 @@ for ang, r in positions():
 ax.add_patch(plt.Circle((0, PZ), PIV_D / 2, fc="white", ec="k"))
 ax.annotate("", xy=(55, -40), xytext=(15, -40), arrowprops=dict(arrowstyle="->", lw=2))
 ax.text(18, -36, "dirección de tiro (+Y)")
-ax.text(-12, -55, "brazo 13 mm", rotation=90)
+ax.text(-14, -58, "brazo", rotation=90)
 ax.set_aspect("equal"); ax.set_xlim(-80, 110); ax.set_ylim(-60, 140)
 ax.set_xlabel("Y [mm]"); ax.set_ylabel("Z [mm] (0 = punta del brazo)"); ax.grid(alpha=0.3)
 ax.set_title("Rango de ajuste: -30° a +30° en pasos de 5° (13 posiciones)")
 plt.tight_layout(); plt.savefig(os.path.join(ROOT, "img", "vista_lateral_angulos.png")); plt.close()
 print("ok")
+
+# Corte del manguito (plano YZ, X = 0): hueco cónico y punta redondeada
+import numpy as np
+fig, ax = plt.subplots(figsize=(6, 8), dpi=130)
+def prof_pts(length, clr):
+    r = ARM_Y_TIP / 2; rr = r + clr / 2; wb = arm_width(length) + clr
+    arc = [(rr * math.cos(t), -r + rr * math.sin(t)) for t in np.linspace(0, math.pi, 40)]
+    return np.array([(wb / 2, -length)] + arc + [(-wb / 2, -length)])
+ax.add_patch(plt.Rectangle((-OY / 2, -SLEEVE_L), OY, SLEEVE_L + CAP, fc=(0.55, 0.7, 0.95), ec="k"))
+ax.fill(*prof_pts(SLEEVE_L, CLR).T, color="white", ec="k")
+ax.fill(*prof_pts(SLEEVE_L + 15, 0).T, color=(0.75, 0.62, 0.5), alpha=0.85)
+for z in VENT_Z:
+    ax.add_patch(plt.Rectangle((-OY / 2, z - VENT_D / 2), WALL + 1.5, VENT_D, fc="white", ec="k", lw=0.5))
+    ax.add_patch(plt.Rectangle((OY / 2 - WALL - 1.5, z - VENT_D / 2), WALL + 1.5, VENT_D, fc="white", ec="k", lw=0.5))
+def dim(y0, y1, z, txt):
+    ax.annotate("", (y0, z), (y1, z), arrowprops=dict(arrowstyle="<->", lw=0.8)); ax.text((y0 + y1) / 2, z + 0.8, txt, ha="center", fontsize=9)
+dim(-(ARM_Y_TIP + CLR) / 2, (ARM_Y_TIP + CLR) / 2, -ARM_Y_TIP / 2, f"{ARM_Y_TIP + CLR:.1f}")
+dim(-(arm_width(SLEEVE_L) + CLR) / 2, (arm_width(SLEEVE_L) + CLR) / 2, -SLEEVE_L + 3, f"{arm_width(SLEEVE_L) + CLR:.1f}")
+dim(-OY / 2, OY / 2, CAP + 2, f"{OY:.1f}")
+ax.annotate("", (OY / 2 + 3, 0), (OY / 2 + 3, -SLEEVE_L), arrowprops=dict(arrowstyle="<->", lw=0.8))
+ax.text(OY / 2 + 4, -SLEEVE_L / 2, f"{SLEEVE_L:.0f} mm\ndentro del\nsoporte", va="center", fontsize=9)
+ax.text(OY / 2 + 4, -ARM_Y_TIP / 2 + 2, f"punta R{ARM_Y_TIP/2:.0f}", fontsize=9)
+for z in VENT_Z:
+    ax.text(-OY / 2 - 1, z, "respiradero Ø3 ", ha="right", va="center", fontsize=8)
+ax.text(0, -SLEEVE_L - 8, "brazo (MDF 13 mm de espesor)", ha="center", fontsize=9)
+ax.set_aspect("equal"); ax.set_xlim(-32, 36); ax.set_ylim(-58, 10); ax.axis("off")
+ax.set_title("Corte del manguito: hueco a la medida del brazo\n(cotas en mm, ya incluyen 0.5 mm de holgura para pegamento)", fontsize=10)
+plt.tight_layout(); plt.savefig(os.path.join(ROOT, "img", "corte_manguito.png")); plt.close()

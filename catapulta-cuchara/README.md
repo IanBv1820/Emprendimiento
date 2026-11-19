@@ -40,13 +40,14 @@ Diseño para impresión 3D en PLA. Son dos piezas impresas más tornillería est
 
 | Parámetro | Valor | Descripción |
 |---|---|---|
-| `arm_x` | 13 mm | espesor del brazo en dirección del eje (**medido**) |
-| `arm_y` | 13 mm | ancho del brazo en dirección de tiro (**POR CONFIRMAR**) |
+| `arm_x` | 13 mm | espesor de la tabla del brazo (canto negro), constante (**medido**) |
+| `arm_y_tip` | 10 mm | ancho de la cara café en la punta; la punta es redondeada R5 (**medido**) |
+| `arm_y` | 13 mm | ancho de la cara café a 40 mm de la punta (**medido**); el brazo es cónico |
 | `clr` | 0.5 mm | holgura total (≈0.25 mm por lado para la capa de pegamento) |
 | `wall` | 3 mm | pared del manguito |
-| `sleeve_l` | 50 mm | profundidad del manguito (área de pegado) |
+| `sleeve_l` | 40 mm | cuánto entra el brazo en el soporte |
 | `cap` | 3 mm | tapa del manguito |
-| `vent_d` | 3 mm | respiraderos de pegamento, a 15 y 35 mm bajo la punta |
+| `vent_d` | 3 mm | respiraderos de pegamento, a 13 y 29 mm bajo la punta |
 | `piv_d` | 5.3 mm | agujero del pivote (M5) |
 | `pin_d` | 3.2 mm | agujeros de bloqueo (M3) |
 | `stem_t` | 8 mm | espesor del tallo |
@@ -73,8 +74,15 @@ Ejes del modelo: **X** = dirección del eje de acero, **Y** = dirección de tiro
 
 ### Pieza 1: Soporte (`soporte_cuchara.ipt`)
 
-1. **Boceto en plano XY**: cuadrado de 19.5 × 19.5 centrado. Extruir **53 mm** hacia −Z (50 de manguito + 3 de tapa). Ubicar la cara superior en Z = +3.
-2. **Cavidad**: en la cara inferior, cuadrado de 13.5 × 13.5 centrado. Extruir un corte de **50 mm** (queda la tapa de 3 mm arriba). Añadir un chaflán de 0.6 mm en la entrada.
+1. **Boceto en plano XY**: cuadrado de 19.5 × 19.5 centrado. Extruir **43 mm** hacia −Z (40 de manguito + 3 de tapa). Ubicar la cara superior en Z = +3.
+2. **Cavidad cónica** (copia la forma del brazo + 0.5 mm de holgura). Boceto en el plano YZ:
+   - Base de Y = −6.75 a +6.75 en **Z = −40** (13.5 mm de ancho).
+   - Dos líneas hasta (±5.25, −5).
+   - Arco de **R5.25** con centro en (0, −5) que cierra la punta (llega a Z = +0.25).
+
+   Extruir como **corte simétrico de 13.5 mm** en X. Queda una tapa de unos 3 mm sobre la punta. Añadir un chaflán de 0.6 mm en la entrada.
+
+   ![Corte del manguito](img/corte_manguito.png)
 3. **Orejas**: boceto en el plano YZ con este perfil:
    - Base de Y = −9.75 a +9.75 en Z = 0.
    - Dos líneas hasta (±26.35, 45.41).
@@ -88,7 +96,7 @@ Ejes del modelo: **X** = dirección del eje de acero, **Y** = dirección de tiro
 
    Lo más cómodo es dibujar un agujero y usar un **patrón circular** con centro en el pivote: 7 instancias × 10° para la fila 1 y 6 instancias × 10° para la fila 2, empezando en −25°.
 6. **Marcas** (opcional): ranuras de 0.7 × 0.6 mm de profundidad entre R38 y R41, cada 5°, en las dos caras exteriores.
-7. **Respiraderos**: dos agujeros de Ø3 en dirección Y, en Z = −15 y Z = −35. Solo atraviesan las paredes del manguito. Por ahí sale el pegamento sobrante y queda como "remache".
+7. **Respiraderos**: dos agujeros de Ø3 en dirección Y, en Z = −13 y Z = −29. Solo atraviesan las paredes del manguito. Por ahí sale el pegamento sobrante y queda como "remache".
 
 ### Pieza 2: Cuchara (`cuchara.ipt`)
 
@@ -114,10 +122,11 @@ Origen en el pivote. El tallo va hacia +Z y el cuenco abre hacia +Y.
 ## Pegado al brazo
 
 1. **Reparar la rajadura primero.** Meter cola blanca para madera o epoxi dentro de la grieta y apretar con una prensa o cinta. Dejar secar.
-2. **Probar en seco.** El manguito debe entrar sin forzar hasta que la punta del brazo toque la tapa. Si entra muy justo, lijar un poco el brazo; no el manguito.
-3. **Preparar las superficies.** Lijar con lija 120 el interior del manguito y la punta del brazo (las caras de MDF quemadas por el láser pegan mal). Limpiar el polvo.
-4. **Pegar.** Usar **epoxi de 2 componentes** (tipo 5 o 10 minutos): untar el brazo y las paredes interiores, y meter el manguito girándolo un poco. El sobrante sale por los respiraderos.
-5. **Alinear antes de que cure.** Las orejas deben quedar **paralelas al eje de giro** del brazo, para que la cuchara gire en el mismo plano que el brazo. Dejar curar 24 h antes de disparar.
+2. **Cortar al ras el clavo** que atraviesa la punta del brazo (o sacarlo). Si sobresale, el soporte no entra.
+3. **Probar en seco.** El manguito debe entrar sin forzar hasta que la punta del brazo toque la tapa. Si entra muy justo, lijar un poco el brazo; no el manguito.
+4. **Preparar las superficies.** Lijar con lija 120 el interior del manguito y la punta del brazo (las caras de MDF quemadas por el láser pegan mal). Limpiar el polvo.
+5. **Pegar.** Usar **epoxi de 2 componentes** (tipo 5 o 10 minutos): untar el brazo y las paredes interiores, y meter el manguito girándolo un poco. El sobrante sale por los respiraderos.
+6. **Alinear antes de que cure.** Las orejas deben quedar **paralelas al eje de giro** del brazo, para que la cuchara gire en el mismo plano que el brazo. Dejar curar 24 h antes de disparar.
 
 > No usar silicona caliente: se despega con los golpes. El pegamento instantáneo (cianoacrilato) funciona, pero es frágil al impacto; el epoxi es mejor.
 
