@@ -125,7 +125,7 @@ Origen en el pivote. El tallo va hacia +Z y el cuenco abre hacia +Y.
 2. **Cortar al ras el clavo** que atraviesa la punta del brazo (o sacarlo). Si sobresale, el soporte no entra.
 3. **Probar en seco.** El manguito debe entrar sin forzar hasta que la punta del brazo toque la tapa. Si entra muy justo, lijar un poco el brazo; no el manguito.
 4. **Preparar las superficies.** Lijar con lija 120 el interior del manguito y la punta del brazo (las caras de MDF quemadas por el láser pegan mal). Limpiar el polvo.
-5. **Pegar.** Usar **epoxi de 2 componentes** (tipo 5 o 10 minutos): untar el brazo y las paredes interiores, y meter el manguito girándolo un poco. El sobrante sale por los respiraderos.
+5. **Pegar.** Usar **epoxi de 2 componentes** (tipo 5 o 10 minutos): untar el brazo y las paredes interiores, y meter el soporte recto hasta que la punta toque el fondo. El sobrante sale por los respiraderos.
 6. **Alinear antes de que cure.** Las orejas deben quedar **paralelas al eje de giro** del brazo, para que la cuchara gire en el mismo plano que el brazo. Dejar curar 24 h antes de disparar.
 
 > No usar silicona caliente: se despega con los golpes. El pegamento instantáneo (cianoacrilato) funciona, pero es frágil al impacto; el epoxi es mejor.
