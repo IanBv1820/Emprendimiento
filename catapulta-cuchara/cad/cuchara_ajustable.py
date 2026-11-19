@@ -12,12 +12,12 @@ import cadquery as cq
 # ---------------- PARÁMETROS (cámbialos aquí) ----------------
 ARM_X = 13.0      # espesor del brazo en dirección del eje (medido: 1.3 cm)
 ARM_Y = 13.0      # ancho del brazo en dirección de lanzamiento  (CONFIRMAR)
-CLR = 0.4         # holgura de impresión PLA
+CLR = 0.5         # holgura total: deja ~0.25 mm por lado para la capa de pegamento
 WALL = 3.0        # pared del manguito
-SLEEVE_L = 45.0   # largo que entra el brazo en el manguito
+SLEEVE_L = 50.0   # largo que entra el brazo en el manguito (más área de pegado, abraza la rajadura)
 CAP = 3.0         # espesor de la tapa del manguito
-HOLE_TIP = 10.0   # distancia de la punta del brazo al agujero del tornillo de fijación
-BOLT_D = 4.3      # tornillo de fijación al brazo (M4)
+VENT_D = 3.0      # respiraderos para que salga el exceso de pegamento
+VENT_Z = (-15.0, -35.0)  # posición de los respiraderos (bajo la punta del brazo)
 
 PIV_D = 5.3       # perno del pivote (M5)
 PIN_D = 3.2       # pasador de bloqueo (M3 o varilla de 3 mm)
@@ -30,10 +30,10 @@ CHEEK_R = 41.0                # radio de las orejas (sector)
 CHEEK_HALF = 40.0             # medio ángulo del sector de las orejas
 ANG_MIN, ANG_MAX, STEP = -30, 30, 5   # rango de ajuste (grados)
 
-BALL_D = 40.0     # diámetro del proyectil (pelota ping-pong = 40)
+BALL_D = 30.0     # proyectil: bolita de plastilina de 20 g (~29-30 mm de diámetro)
 CUP_WALL = 2.5
-CUP_DEPTH = 16.0  # profundidad interior del cuenco
-CUP_DIST = 68.0   # distancia pivote -> centro del cuenco (a lo largo del tallo)
+CUP_DEPTH = 13.0  # profundidad interior del cuenco
+CUP_DIST = 62.0   # distancia pivote -> centro del cuenco (a lo largo del tallo)
 # --------------------------------------------------------------
 
 OX = ARM_X + CLR + 2 * WALL           # ancho exterior del manguito en X
@@ -88,9 +88,9 @@ def soporte():
                     .rotate((0, 0, 0), (1, 0, 0), -ang)
                     .translate((xs, 0, PZ)))
             body = body.cut(tick)
-    # Tornillo de fijación al brazo (en Y)
-    bolt = cq.Workplane("XZ").center(0, -HOLE_TIP).circle(BOLT_D / 2).extrude(OY + 2, both=True)
-    body = body.cut(bolt)
+    # Respiraderos de pegamento (en Y, atraviesan solo las paredes del manguito; el brazo NO se perfora)
+    for z in VENT_Z:
+        body = body.cut(cq.Workplane("XZ").center(0, z).circle(VENT_D / 2).extrude(OY + 2, both=True))
     # Chaflán de entrada
     body = body.faces("<Z").edges().chamfer(0.6)
     return body
