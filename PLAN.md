@@ -1,184 +1,174 @@
-# Plan de estudio: aprender a programar desde cero
+# Plan de estudio: Python para emprender
 
-**Meta:** que al final puedas construir y publicar una aplicación web simple para un emprendimiento, por ejemplo una tienda, un sistema de pedidos o una página con reservas.
+**Punto de partida:** ya manejas más o menos bucles y condicionales, y las funciones las tienes a un 6/10. No empezamos desde cero, pero sí afianzamos las bases antes de avanzar.
 
-**Ruta:** web (HTML, CSS, JavaScript y después Node.js). Elegí esta ruta porque ves resultados en el navegador desde el primer día, y con un solo lenguaje (JavaScript) cubres el frontend y el backend.
+**Meta:** que al final puedas usar Python para tu emprendimiento: automatizar tareas, analizar tus ventas, generar reportes en Excel y publicar una aplicación web propia.
 
 ## Cómo usar este plan
 
-- **Ritmo sugerido:** 3 sesiones por semana de 1,5 a 2 horas cada una. Son 36 sesiones, así que unas 12 semanas.
+- **Ritmo sugerido:** 3 sesiones por semana de 1,5 a 2 horas cada una. Son 32 sesiones, así que unas 11 semanas.
 - **Cada sesión tiene un tema, lo que vas a aprender y una práctica.** La práctica no es opcional: ahí es donde realmente se aprende.
-- **Guarda todo en este repo.** Crea una carpeta por sesión (`sesiones/01-...`, `sesiones/02-...`) y haz commit al terminar.
+- **Guarda todo en este repo.** Crea una carpeta por sesión (`sesiones/01-diagnostico/`, `sesiones/02-git/`…) con tus archivos `.py` y haz commit al terminar.
 - **Marca la casilla** `[x]` cuando termines una sesión.
-- **Si una sesión te cuesta, repítela.** Es mejor ir lento y entender que avanzar sin entender.
-- **Recursos gratis recomendados:** [MDN Web Docs](https://developer.mozilla.org/es/) (la referencia oficial, en español), [javascript.info](https://es.javascript.info/) y [freeCodeCamp](https://www.freecodecamp.org/espanol/).
+- **Si una sesión te resulta fácil, avanza. Si te cuesta, repítela.**
+- **Recursos gratis recomendados:** [documentación oficial de Python en español](https://docs.python.org/es/3/tutorial/), [Real Python](https://realpython.com/) (en inglés, muy claro) y [Exercism, track de Python](https://exercism.org/tracks/python) para practicar.
 
 ### Regla sobre la IA
 
 Hasta el módulo 5 usa la IA como **profesor**, no como quien hace la tarea:
 
-- ✅ "Explícame qué hace este error", "¿por qué mi bucle no termina?", "dame un ejercicio extra sobre arrays"
-- ❌ "Hazme la página completa"
+- ✅ "Explícame este error", "¿por qué mi función devuelve `None`?", "dame 3 ejercicios más de diccionarios"
+- ❌ "Hazme el programa completo"
 
-Si copias código que no entiendes, no estás aprendiendo. En el módulo 5 aprendes a usar agentes como Claude Code para trabajar más rápido, y ahí ya vas a poder revisar lo que escriben.
+Si copias código que no entiendes, no estás aprendiendo. En el módulo 5 aprendes a trabajar con agentes como Claude Code, y ahí ya vas a poder revisar lo que escriben.
 
 ---
 
-## Módulo 0: Preparación (2 sesiones)
+## Módulo 0: Diagnóstico y herramientas (2 sesiones)
 
-- [ ] **Sesión 1: Qué es programar y cómo funciona la web**
-  - Aprendes qué es un programa, qué pasa cuando abres una página (navegador → servidor → respuesta) y la diferencia entre frontend y backend.
-  - Instala VS Code y Node.js, y aprende comandos básicos de la terminal (`cd`, `ls`, `mkdir`).
-  - **Práctica:** crea una carpeta desde la terminal y ábrela en VS Code.
+- [ ] **Sesión 1: Diagnóstico + preparar tu computadora**
+  - Instala Python 3.12 o más nuevo y VS Code con la extensión de Python. Aprende a correr un archivo desde la terminal: `python archivo.py`.
+  - **Práctica, sin ayuda y midiendo el tiempo:**
+    1. Una función `precio_final(precio, descuento=0, impuesto=0.18)` que devuelva el precio con el descuento y el impuesto aplicados.
+    2. Con `ventas = [120, 45, 300, 80, 15]`, calcula el total, el promedio y cuántas ventas superan 100, **sin usar `sum()` ni `len()`**.
+    3. Un bucle `while` que pida números hasta que escribas `fin` y al final muestre el mayor.
+    4. Una función que reciba un texto y devuelva cuántas veces aparece cada palabra.
+  - **Cómo leer el resultado:** si resuelves del 1 al 3 en menos de 15 minutos cada uno, haz las sesiones 3 y 4 rápido, como repaso. Si el 4 no te sale, no pasa nada: lo ves en la sesión 7.
 
 - [ ] **Sesión 2: Git y GitHub**
-  - Aprendes qué es el control de versiones y los comandos `clone`, `add`, `commit`, `push` y `status`.
-  - **Práctica:** clona este repo en tu computadora, crea `sesiones/01-intro/notas.md` con lo que aprendiste y súbelo con un commit.
+  - Qué es el control de versiones y los comandos `clone`, `add`, `commit`, `push` y `status`.
+  - **Práctica:** clona este repo, guarda tus ejercicios del diagnóstico en `sesiones/01-diagnostico/` y súbelos.
 
-## Módulo 1: HTML y CSS, la cara de la web (7 sesiones)
+## Módulo 1: Afianzar las bases (6 sesiones)
 
-- [ ] **Sesión 3: Estructura HTML**
-  - Etiquetas, `<head>` y `<body>`, títulos, párrafos y comentarios.
-  - **Práctica:** una página "Sobre mí" con tu nombre y 3 párrafos.
+- [ ] **Sesión 3: Bucles a fondo**
+  - `for` con `range`, `enumerate` y `zip`; `while`; `break` y `continue`; bucles anidados.
+  - **Práctica:** imprime una tabla de precios por cantidad (de 1 a 10 unidades de 3 productos) bien alineada.
 
-- [ ] **Sesión 4: Enlaces, imágenes y listas**
-  - `<a>`, `<img>`, `<ul>`, `<ol>`, rutas relativas y absolutas.
-  - **Práctica:** agrega una foto, una lista de tus metas y enlaces a tus redes.
+- [ ] **Sesión 4: Funciones de 6 a 9/10**
+  - Parámetros por defecto, argumentos con nombre, `*args` y `**kwargs`, devolver varios valores, alcance (`scope`) de las variables, docstrings y type hints básicos (`def f(x: int) -> float`).
+  - La diferencia entre `print` y `return`, que es el error más común.
+  - **Práctica:** las funciones `calcular_ganancia(costo, precio, unidades)`, `margen(costo, precio)` y `punto_de_equilibrio(costos_fijos, costo_unitario, precio)`, cada una con su docstring.
 
-- [ ] **Sesión 5: Formularios**
-  - `<form>`, `<input>`, `<select>`, `<textarea>`, `<button>` y la importancia de los `<label>`.
-  - **Práctica:** un formulario de contacto para un negocio (nombre, correo, mensaje).
+- [ ] **Sesión 5: Textos y f-strings**
+  - Métodos de strings (`split`, `strip`, `lower`, `replace`, `startswith`), f-strings y formato de dinero: `f"{precio:,.2f}"`.
+  - **Práctica:** genera un recibo de compra bien formateado en la consola.
 
-- [ ] **Sesión 6: CSS básico**
-  - Selectores, colores, fuentes, tamaños y cómo conectar un `.css`.
-  - **Práctica:** dale estilo a tu página "Sobre mí".
+- [ ] **Sesión 6: Listas y tuplas**
+  - Slicing, ordenar, buscar y list comprehensions (`[p * 1.18 for p in precios]`).
+  - **Práctica:** con una lista de precios, saca los 3 más caros, los que están bajo 50 y la lista con impuesto incluido, usando comprehensions.
 
-- [ ] **Sesión 7: El modelo de caja**
-  - `margin`, `padding`, `border`, `width` y `box-sizing`, y cómo usar las DevTools del navegador para inspeccionar.
-  - **Práctica:** arma tarjetas de producto (imagen, nombre, precio).
+- [ ] **Sesión 7: Diccionarios y sets**
+  - Crear, leer y modificar; recorrer con `.items()`; `.get()`; diccionarios anidados; listas de diccionarios; sets para eliminar duplicados.
+  - **Práctica:** un inventario como lista de diccionarios `{"nombre", "precio", "stock"}`. Busca productos, actualiza el stock y lista los que están por agotarse.
 
-- [ ] **Sesión 8: Flexbox**
-  - Alinear y distribuir elementos en filas y columnas.
-  - **Práctica:** un menú de navegación y una fila de 3 tarjetas de producto.
+- [ ] **Sesión 8: 🎯 Mini proyecto 1, inventario en la consola**
+  - Un programa con menú (`while` + `input`) para agregar, vender, buscar y listar productos, y ver el valor total del inventario. Todo organizado en funciones.
 
-- [ ] **Sesión 9: Diseño responsive + 🎯 Mini proyecto 1**
-  - Media queries y cómo diseñar primero para celular.
-  - **Práctica:** la **landing page de tu emprendimiento** (o uno inventado) con encabezado, productos/servicios, formulario de contacto y pie de página. Que se vea bien en el celular.
+## Módulo 2: Python para trabajo real (8 sesiones)
 
-## Módulo 2: Fundamentos de JavaScript, la lógica (10 sesiones)
+- [ ] **Sesión 9: Manejo de errores**
+  - Leer un traceback, `try`/`except`/`else`/`finally`, `raise` y validar lo que escribe el usuario.
+  - **Práctica:** haz tu inventario a prueba de errores: que no se caiga si escribes letras donde va un número o vendes más de lo que hay.
 
-- [ ] **Sesión 10: Variables y tipos de datos**
-  - `let`, `const`, números, textos, booleanos y `console.log`.
-  - **Práctica:** guarda en variables el nombre, precio y stock de un producto e imprímelos.
+- [ ] **Sesión 10: Archivos, CSV y JSON**
+  - `open` con `with`, los módulos `csv` y `json`, y `pathlib`.
+  - **Práctica:** que el inventario se guarde en un archivo JSON y no se pierda al cerrar el programa. Exporta las ventas a un CSV.
 
-- [ ] **Sesión 11: Operadores y condicionales**
-  - Aritmética, comparaciones, `&&` y `||`, `if`/`else` y `switch`.
-  - **Práctica:** si la compra supera 100, aplica 10% de descuento; si no hay stock, muestra "Agotado".
+- [ ] **Sesión 11: Módulos y organización del código**
+  - `import`, dividir el código en varios archivos, `if __name__ == "__main__":` y la librería estándar útil (`datetime`, `random`, `os`).
+  - **Práctica:** separa el inventario en `modelos.py`, `almacenamiento.py` y `main.py`.
 
-- [ ] **Sesión 12: Bucles**
-  - `for` y `while`, y cómo evitar bucles infinitos.
-  - **Práctica:** imprime una tabla de precios del 1 al 10 unidades.
+- [ ] **Sesión 12: Entornos virtuales y pip**
+  - `python -m venv .venv`, `pip install`, `requirements.txt` y `.gitignore`.
+  - **Práctica:** crea un entorno virtual para tus proyectos e instala tu primer paquete (`rich`, para que la consola se vea bonita).
 
-- [ ] **Sesión 13: Funciones**
-  - Parámetros, `return`, funciones flecha y por qué conviene dividir el problema en partes.
-  - **Práctica:** las funciones `calcularIVA(precio)`, `aplicarDescuento(precio, porcentaje)` y `calcularTotal(...)`.
+- [ ] **Sesión 13: Programación orientada a objetos (1)**
+  - Clases, `__init__`, atributos, métodos y `self`.
+  - **Práctica:** las clases `Producto` y `Inventario`, con métodos `agregar`, `vender` y `valor_total`.
 
-- [ ] **Sesión 14: Arrays**
-  - Crear, leer, agregar y quitar elementos, y recorrerlos.
-  - **Práctica:** un carrito de compras como array: agrega productos, quita uno y muestra el total.
+- [ ] **Sesión 14: Programación orientada a objetos (2)**
+  - Herencia, `__str__`, `@dataclass` y cuándo vale la pena usar una clase (y cuándo no).
+  - **Práctica:** una clase `Venta` que guarde fecha, productos y total, y la clase `ProductoPerecible` que herede de `Producto` y tenga fecha de vencimiento.
 
-- [ ] **Sesión 15: Objetos**
-  - Propiedades y métodos, y arrays de objetos.
-  - **Práctica:** un inventario como array de objetos `{ nombre, precio, stock }`.
+- [ ] **Sesión 15: Tests con pytest**
+  - Por qué testear, cómo escribir y correr tests con `assert`, y casos borde.
+  - **Práctica:** tests para `calcular_ganancia`, `vender` (incluido vender sin stock) y `valor_total`.
 
-- [ ] **Sesión 16: Métodos de arrays**
-  - `map`, `filter`, `find`, `reduce` y `sort`.
-  - **Práctica:** del inventario saca los productos con poco stock, el valor total y los productos ordenados por precio.
+- [ ] **Sesión 16: 🎯 Mini proyecto 2, sistema de ventas**
+  - Clases `Producto`, `Inventario` y `Venta`; guardado en JSON; un reporte del día (total vendido, producto estrella y stock bajo); y tests para la lógica principal.
 
-- [ ] **Sesión 17: Errores y depuración**
-  - Leer mensajes de error, usar `console` y el debugger de las DevTools, y `try`/`catch`.
-  - **Práctica:** te paso (o le pides a la IA) código con 5 errores y los encuentras tú.
+## Módulo 3: Datos y automatización (6 sesiones)
 
-- [ ] **Sesión 18: Repaso y ejercicios de lógica**
-  - Resuelve 5 a 8 ejercicios cortos sin ayuda, en freeCodeCamp o en tu propia lista.
-  - **Práctica:** anota cuáles te costaron y repasa esos temas.
+> Aquí Python se vuelve un superpoder para emprender.
 
-- [ ] **Sesión 19: 🎯 Mini proyecto 2, calculadora de negocio**
-  - Un programa en la consola que, con costo, precio de venta y unidades vendidas, calcule la ganancia, el margen y el punto de equilibrio.
+- [ ] **Sesión 17: pandas (1)**
+  - `DataFrame`, leer CSV y Excel, ver columnas, filtrar y ordenar.
+  - **Práctica:** carga un CSV de ventas (el tuyo o uno de ejemplo que generes) y responde preguntas: ¿cuál fue la venta más grande?, ¿qué pasó en marzo?
 
-## Módulo 3: JavaScript en el navegador, páginas interactivas (6 sesiones)
+- [ ] **Sesión 18: pandas (2)**
+  - `groupby`, totales por mes, producto o cliente, limpiar datos (vacíos, duplicados, formatos) y columnas calculadas.
+  - **Práctica:** ventas por mes, top 5 de productos y ticket promedio por cliente.
 
-- [ ] **Sesión 20: El DOM**
-  - `querySelector`, cambiar texto, estilos y clases, y crear elementos desde JS.
-  - **Práctica:** dibuja las tarjetas de productos desde el array del inventario en lugar de escribirlas en HTML.
+- [ ] **Sesión 19: Gráficos con matplotlib**
+  - Gráficos de líneas, barras y torta; títulos y etiquetas; guardarlos como imagen.
+  - **Práctica:** un gráfico de las ventas por mes y otro de los productos más vendidos.
 
-- [ ] **Sesión 21: Eventos**
-  - `addEventListener`, `click`, `input` y `submit`.
-  - **Práctica:** un botón "Agregar al carrito" que actualice un contador.
+- [ ] **Sesión 20: Automatizar Excel**
+  - `pandas.to_excel` y `openpyxl`: varias hojas, formato, anchos de columna y fórmulas.
+  - **Práctica:** genera un Excel con una hoja de resumen y otra de detalle, listo para mandar.
 
-- [ ] **Sesión 22: Formularios y validación**
-  - Leer valores, validar campos, mostrar errores y `preventDefault`.
-  - **Práctica:** valida el formulario de contacto de tu landing page.
+- [ ] **Sesión 21: APIs con requests**
+  - Qué es una API, el formato JSON, `requests.get` y las claves de API en un archivo `.env` (que **nunca** se sube a GitHub).
+  - **Práctica:** consulta el tipo de cambio del dólar con una API pública y convierte tus precios.
 
-- [ ] **Sesión 23: Guardar datos en el navegador**
-  - `localStorage` y `JSON.stringify`/`JSON.parse`.
-  - **Práctica:** que el carrito no se borre al recargar la página.
+- [ ] **Sesión 22: 🎯 Mini proyecto 3, reporte automático de ventas**
+  - Un script que, con un CSV de ventas, genere automáticamente un Excel con el resumen y los gráficos. Una sola orden: `python reporte.py ventas.csv`.
 
-- [ ] **Sesión 24: APIs, `fetch` y `async`/`await`**
-  - Qué es una API, el formato JSON y cómo pedir datos de internet.
-  - **Práctica:** muestra el tipo de cambio del dólar (o el clima) usando una API pública.
+## Módulo 4: Bases de datos y web (6 sesiones)
 
-- [ ] **Sesión 25: 🎯 Mini proyecto 3, gestor de pedidos**
-  - Una app donde registras pedidos (cliente, producto, cantidad, estado), los filtras por estado y se guardan en `localStorage`.
+- [ ] **Sesión 23: SQL con SQLite**
+  - Tablas, `CREATE`, `INSERT`, `SELECT`, `WHERE`, `UPDATE`, `DELETE` y un `JOIN` básico.
+  - **Práctica:** diseña las tablas `productos`, `clientes` y `ventas`, y escribe consultas útiles.
 
-## Módulo 4: Backend y bases de datos (6 sesiones)
+- [ ] **Sesión 24: Python + base de datos**
+  - El módulo `sqlite3`, consultas con parámetros (y por qué así se evita la inyección SQL).
+  - **Práctica:** cambia el guardado de tu sistema de ventas de JSON a SQLite.
 
-- [ ] **Sesión 26: Node.js y npm**
-  - JavaScript fuera del navegador, `package.json` e instalar paquetes.
-  - **Práctica:** corre tu calculadora de negocio (sesión 19) con Node.
+- [ ] **Sesión 25: Flask (1), tu primera web**
+  - Rutas, plantillas Jinja y lo mínimo de HTML para mostrar datos.
+  - **Práctica:** una página que muestre tu lista de productos sacada de la base de datos.
 
-- [ ] **Sesión 27: Tu primer servidor con Express**
-  - Rutas, peticiones y respuestas, y los métodos `GET` y `POST`.
-  - **Práctica:** un servidor que responda `/productos` con tu inventario en JSON.
+- [ ] **Sesión 26: Flask (2), formularios**
+  - `GET` y `POST`, formularios, validación y redirecciones.
+  - **Práctica:** páginas para agregar productos y registrar ventas desde el navegador.
 
-- [ ] **Sesión 28: API REST**
-  - CRUD (crear, leer, actualizar, borrar) y los códigos HTTP 200, 201, 400 y 404.
-  - **Práctica:** una API completa de productos y pruébala con Thunder Client o Postman.
+- [ ] **Sesión 27: Seguridad básica**
+  - Login simple con contraseñas hasheadas, sesiones, variables de entorno, validación en el servidor y qué nunca subir a GitHub.
+  - **Práctica:** que solo tú puedas entrar al panel de ventas.
 
-- [ ] **Sesión 29: Bases de datos y SQL**
-  - Tablas, `SELECT`, `INSERT`, `UPDATE`, `DELETE` y `WHERE`, usando SQLite.
-  - **Práctica:** guarda los productos en una base de datos en lugar de un array.
+- [ ] **Sesión 28: Publicar en internet**
+  - Deploy en Render o PythonAnywhere y variables de entorno en producción.
+  - **Práctica:** que tu sistema de ventas tenga un link real que funcione desde tu celular.
 
-- [ ] **Sesión 30: Conectar frontend con backend**
-  - Que tu página use `fetch` contra tu propia API, y qué es CORS.
-  - **Práctica:** que el gestor de pedidos guarde los datos en el servidor en lugar de `localStorage`.
+## Módulo 5: Proyecto final (4 sesiones)
 
-- [ ] **Sesión 31: Seguridad básica**
-  - Variables de entorno (`.env`), por qué nunca se suben contraseñas a GitHub, validar datos en el servidor y `.gitignore`.
-  - **Práctica:** revisa tu proyecto y corrige lo que haga falta.
+- [ ] **Sesión 29: Planificar el proyecto final (MVP)**
+  - Elige un problema real de tu emprendimiento. Define lo mínimo que tiene que hacer, qué datos guarda y qué pantallas o reportes tiene.
+  - **Práctica:** escribe `proyecto-final/PLAN.md` con la lista de funciones y las tablas de la base de datos.
 
-## Módulo 5: Proyecto final y publicación (5 sesiones)
+- [ ] **Sesión 30: Programar con agentes de IA**
+  - Cómo trabajar con Claude Code o Cursor: dar contexto claro, pedir cambios pequeños, revisar cada cambio y usar tus tests como red de seguridad.
+  - **Práctica:** construye la primera parte del proyecto con ayuda de la IA y revisa cada cambio antes de aceptarlo.
 
-- [ ] **Sesión 32: Planificar el proyecto final (MVP)**
-  - Elige una idea real de tu emprendimiento y define lo mínimo que debe hacer, las pantallas y los datos que guarda.
-  - **Práctica:** escribe `proyecto-final/PLAN.md` con la lista de funciones y un boceto en papel.
+- [ ] **Sesión 31: Construir y publicar**
+  - Completar las funciones principales, escribir tests y hacer el deploy.
+  - **Práctica:** que el proyecto final esté funcionando en internet.
 
-- [ ] **Sesión 33: Usar IA para programar bien**
-  - Cómo trabajar con agentes como Claude Code o Cursor: dar contexto claro, pedir cambios pequeños, revisar lo que hacen y escribir tests.
-  - **Práctica:** construye la primera parte del proyecto final con ayuda de la IA y revisa cada cambio antes de aceptarlo.
-
-- [ ] **Sesión 34: Construir el proyecto (parte 2)**
-  - Completar las funciones principales.
-  - **Práctica:** que el flujo principal funcione de principio a fin.
-
-- [ ] **Sesión 35: Publicar en internet**
-  - Deploy del frontend en GitHub Pages o Netlify y del backend en Render o Railway, con variables de entorno en producción.
-  - **Práctica:** que tu proyecto tenga un link que puedas mandarle a alguien.
-
-- [ ] **Sesión 36: Retrospectiva y próximos pasos**
-  - Qué aprendiste, qué te costó y qué mejorarías del proyecto.
-  - Posibles caminos: React (interfaces más grandes), TypeScript, Python (datos y automatización) o pagos en línea (Stripe o Mercado Pago).
-  - **Práctica:** escribe un README bonito para tu proyecto final. Es tu portafolio.
+- [ ] **Sesión 32: Retrospectiva y próximos pasos**
+  - Qué aprendiste, qué te costó y qué mejorarías.
+  - Posibles caminos: **FastAPI** (APIs modernas), **Django** (webs grandes), **bots de Telegram o WhatsApp** para atender clientes, **análisis de datos** más avanzado o **apps con IA** usando la API de Claude.
+  - **Práctica:** escribe un buen README para tu proyecto final. Es tu portafolio.
 
 ---
 
